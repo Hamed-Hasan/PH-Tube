@@ -86,3 +86,26 @@ const displayMessage = () => {
     <h1>Oops!! Sorry, There is no content here</h1>
     </div>`;
 };
+
+
+
+// seconds to time caculation
+const calculateTime = (timestamp) => {
+    const hours = Math.floor(timestamp / 3600);
+    const minutes = Math.floor((timestamp % 3600) / 60);
+
+    return hours > 0 ? `${hours} hours ${minutes} minutes ago` :'';
+};
+
+
+// Category Selection part
+document.getElementById("all-category").addEventListener("click", () => loadData(1000));
+document.getElementById("music-category").addEventListener("click", () => loadData(1001));
+document.getElementById("comedy-category").addEventListener("click", () => loadData(1003));
+document.getElementById("drawing-category").addEventListener("click", () => loadData(1005));
+
+
+// sorting data showing part
+document.getElementById("sort-by-view").addEventListener("click",sortData);
+
+loadData(1000);
