@@ -39,3 +39,50 @@ const sortCategories = (data) => {
 
     return data.sort(customSort);
 };
+
+
+
+// all data displaying part
+const displayData = (data) => {
+    const videoContainer = document.getElementById("video-container");
+    videoContainer.innerHTML = ''; // making innerHTML null
+
+    data.forEach((video) => {
+        const card = document.createElement("div");
+        card.classList.add("box");
+
+        const postedDate = calculateTime(video.others.posted_date);
+
+        card.innerHTML = `
+            <div>
+            <img class="img-box" src="${video?.thumbnail}" alt="Thumbnail">
+            ${postedDate ? `<p class="text-end date-ago">${postedDate}</p>` : ''}
+            </div>
+            <div class="profile-info">
+                <img class="author-profile" src="${video.authors[0].profile_picture}" alt="Author Profile">
+                <h5>${video.title}</h5>
+            </div>
+            <div class="video-info">
+            <div class="profile-verified">
+                <p>${video.authors[0].profile_name}</p>
+                ${video.authors[0].verified ? '<i class="bi bi-patch-check-fill text-primary"></i>' : ''}
+            </div>
+                <p>${video.others.views} views</p>
+            </div>
+        `;
+
+        videoContainer.appendChild(card);
+    });
+};
+
+
+
+// No content showing part
+const displayMessage = () => {
+    const videoContainer = document.getElementById("video-container");
+    videoContainer.innerHTML = ` 
+    <div class="display-message">
+    <img src="resources/Icon.png" alt="logo">
+    <h1>Oops!! Sorry, There is no content here</h1>
+    </div>`;
+};
