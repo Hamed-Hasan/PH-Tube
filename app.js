@@ -21,3 +21,21 @@ const sortData = () => {
             displayData(sortedData);
         });
 };
+
+
+// sorting category data part for sort button
+const sortCategories = (data) => {
+    const parseValue = (str) => {
+        const numericPart = parseFloat(str);
+        const multiplier = str.includes("K") ? 1000 : str.includes("M") ? 1000000 : 1;
+        return numericPart * multiplier;
+    };
+
+    const customSort = (a, b) => {
+        const aData = parseValue(a.others.views);
+        const bData = parseValue(b.others.views);
+        return bData - aData;
+    };
+
+    return data.sort(customSort);
+};
